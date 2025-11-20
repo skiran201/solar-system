@@ -11,6 +11,13 @@ env:
     MONGO_PASSWORD: saikiran
 jobs:
     unit-testing:
+        strategy:
+            matrix:
+                nodejs_version: [18,19,20]
+                operating_system: [ubuntu-latest, macos-latest]
+                exclude:
+                    - nodejs_version: 18
+                      operating_system: macos-latest
         services:
         # Use a simple, descriptive name (e.g., 'mongo').
         # This name becomes the HOSTNAME your application must use.
@@ -31,15 +38,15 @@ jobs:
                     MONGO_INITDB_DATABASE: superData
                     MONGO_INITDB_ROOT_USERNAME: saikiran
                     MONGO_INITDB_ROOT_PASSWORD: saikiran
-        runs-on: ubuntu-latest
+        runs-on: ${{ matrix.operating_system }}
         steps:
             - name: Checkout repository
               uses: actions/checkout@v3
 
-            - name: Setup NodeJS Version - 18
+            - name: Setup NodeJS Version - ${{ matrix.nodejs_version }}
               uses: actions/setup-node@v3
               with:
-                  node-version: 18
+                  node-version: ${{ matrix.nodejs_version }}
 
             - name: Install dependencies
               run: npm install
