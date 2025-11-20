@@ -39,4 +39,18 @@ jobs:
               run: npm install
 
             - name: Run unit tests
-              run: npm test
+              run: |
+                    # Wait for the service to report 'healthy' status
+                    i=0
+                    while [ "$(docker inspect --format='{{.State.Health.Status}}' mongo)" != "healthy" ] && [ $i -lt 12 ]; do
+                        i=$((i+1))
+                        echo "Waiting for MongoDB health check... Attempt $i of 12"
+                        sleep 5
+                    done
+                    
+                    if [ $i -eq 12 ]; then
+                        echo "MongoDB service did not become healthy within the timeout."
+                        exit 1
+                    fi
+                    echo "MongoDB is fully healthy!"
+                    npm test
