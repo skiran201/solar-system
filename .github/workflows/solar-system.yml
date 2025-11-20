@@ -20,7 +20,7 @@ jobs:
                 # Map the internal Mongo port (27017) to the runner.
                 # NOTE: You don't usually need this explicit port mapping for access
                 # from the job steps, but it's good practice.
-                    - 27017/tcp
+                    - 27017:27017
                 options: >-
                     --health-cmd="mongosh --eval 'db.adminCommand(\"ping\")'"
                     --health-interval=10s
