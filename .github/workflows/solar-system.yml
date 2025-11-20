@@ -1,4 +1,4 @@
-name: solar-system-workflow
+name: solar-system-workflows
 on:
     workflow_dispatch:
     push:
