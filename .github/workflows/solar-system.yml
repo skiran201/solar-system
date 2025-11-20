@@ -8,7 +8,7 @@ on:
 env:
     MONGO_URI: mongodb://127.0.0.1:27017/superData
     MONGO_USERNAME: saikiran
-    MONGO_PASSWORD: saikiran
+    MONGO_PASSWORD: saikiran\n
 jobs:
     unit-testing:
         services:
