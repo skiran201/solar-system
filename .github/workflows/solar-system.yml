@@ -71,7 +71,7 @@ jobs:
                     npm test -- --verbose
 
             - name: Upload Test Results
-              if: steps.unit-test-step.outcome == 'failure' || steps.unit-test-step.outcome == 'success'
+              if: failure() && (steps.unit-test-step.outcome == 'failure' || steps.unit-test-step.outcome == 'success')
               uses: actions/upload-artifact@v4
               with:
                 name: test-results
