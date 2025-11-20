@@ -21,13 +21,8 @@ jobs:
                 # NOTE: You don't usually need this explicit port mapping for access
                 # from the job steps, but it's good practice.
                     - 27017/tcp
-                options: >
-                    --health-cmd "mongo --eval 'db.runCommand({ping: 1})'"
-                    --health-interval 10s
-                    --health-timeout 5s
-                    --health-retries 5 # <-- ENSURE NO EXTRA LINE BREAKS AFTER THIS LINE
                 env:
-                # Required if you need authentication
+                    # Required if you need authentication
                     MONGO_INITDB_ROOT_USERNAME: saikiran
                     MONGO_INITDB_ROOT_PASSWORD: saikiran
         runs-on: ubuntu-latest
