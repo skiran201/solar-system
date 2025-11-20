@@ -5,6 +5,10 @@ on:
         branches:
             - main
             - feature/*
+env:
+    MONGO_URI: mongodb://127.0.0.1:27017/solar-system
+    MONGO_USERNAME: ${{ vars.MONGO_USERNAME }}
+    MONGO_PASSWORD: ${{ vars.MONGO_PASSWORD }}
 jobs:
     unit-testing:
         runs-on: ubuntu-latest
