@@ -6,11 +6,30 @@ on:
             - main
             - feature/*
 env:
-    MONGO_URI: mongodb://127.0.0.1:27017/solar-system
+    MONGO_URI: mongodb://mongo:27017/solar-system
     MONGO_USERNAME: ${{ vars.MONGO_USERNAME }}
     MONGO_PASSWORD: ${{ vars.MONGO_PASSWORD }}
 jobs:
     unit-testing:
+        services:
+        # Use a simple, descriptive name (e.g., 'mongo').
+        # This name becomes the HOSTNAME your application must use.
+            mongo:
+                image: mongo:latest
+                ports:
+                # Map the internal Mongo port (27017) to the runner.
+                # NOTE: You don't usually need this explicit port mapping for access
+                # from the job steps, but it's good practice.
+                    - 27017/tcp
+                options: >
+                    --health-cmd "mongo --eval 'db.runCommand({ping: 1})'"
+                    --health-interval 10s
+                    --health-timeout 5s
+                    --health-retries 5
+                env:
+                # Required if you need authentication
+                    MONGO_INITDB_ROOT_USERNAME: saikiran
+                    MONGO_INITDB_ROOT_PASSWORD: saikiran
         runs-on: ubuntu-latest
         steps:
             - name: Checkout repository
