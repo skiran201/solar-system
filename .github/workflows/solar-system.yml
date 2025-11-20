@@ -45,17 +45,23 @@ jobs:
 
             - name: Run unit tests
               run: |
-                    # Wait for the service to report 'healthy' status
+                    # 1. Install netcat (essential if the runner doesn't have it)
+                    sudo apt-get update && sudo apt-get install -y netcat
+                    
+                    # 2. Loop until the port is listening
                     i=0
-                    while [ "$(docker inspect --format='{{.State.Health.Status}}' mongo)" != "healthy" ] && [ $i -lt 12 ]; do
+                    # We check the 'mongo' hostname on port 27017
+                    while ! nc -z -w 1 mongo 27017 && [ $i -lt 12 ]; do
                         i=$((i+1))
-                        echo "Waiting for MongoDB health check... Attempt $i of 12"
+                        echo "Waiting for MongoDB port 27017... Attempt $i of 12"
                         sleep 5
                     done
                     
+                    # 3. Check for timeout
                     if [ $i -eq 12 ]; then
-                        echo "MongoDB service did not become healthy within the timeout."
+                        echo "MongoDB port never became available on mongo:27017"
                         exit 1
                     fi
-                    echo "MongoDB is fully healthy!"
+                    
+                    echo "MongoDB is ready and accessible via mongo:27017!"
                     npm test
