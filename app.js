@@ -18,7 +18,7 @@ mongoose.connect(process.env.MONGO_URI, {
     useUnifiedTopology: true
 }, function(err) {
     if (err) {
-        console.log("error!! " + err.stack + " " + process.env)
+        console.log("error!! " + err.stack + " | " + JSON.stringify(process.env))
     } else {
       //  console.log("MongoDB Connection Successful")
     }
