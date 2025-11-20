@@ -6,9 +6,9 @@ on:
             - main
             - feature/*
 env:
-    MONGO_URI: mongodb://saikiran:saikiran@127.0.0.1:27017/superData
+    MONGO_URI: mongodb://127.0.0.1:27017/superData
     MONGO_USERNAME: saikiran
-    MONGO_PASSWORD: saikiran
+    MONGO_PASSWORD: Welcome12#$
 jobs:
     unit-testing:
         services:
@@ -30,7 +30,7 @@ jobs:
                     # Required if you need authentication
                     MONGO_INITDB_DATABASE: superData
                     MONGO_INITDB_ROOT_USERNAME: saikiran
-                    MONGO_INITDB_ROOT_PASSWORD: saikiran
+                    MONGO_INITDB_ROOT_PASSWORD: Welcome12#$
         runs-on: ubuntu-latest
         steps:
             - name: Checkout repository
