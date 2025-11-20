@@ -67,7 +67,7 @@ jobs:
                     fi
                     
                     echo "MongoDB is ready and accessible via 127.0.0.1:27017! Running tests now."
-                    npm test --verbose
+                    npm test -- --verbose
               continue-on-error: true
             - name: Upload Test Results
               uses: actions/upload-artifact@v3
