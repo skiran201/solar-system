@@ -45,8 +45,10 @@ jobs:
 
             - name: Run unit tests
               run: |
-                    # 1. Install netcat (essential if the runner doesn't have it)
-                    sudo apt-get update && sudo apt-get install -y netcat
+                    # 1. Install netcat-openbsd (the specific package)
+                    # We update first, then install the package that provides 'nc'
+                    sudo apt-get update
+                    sudo apt-get install -y netcat-openbsd
                     
                     # 2. Loop until the port is listening
                     i=0
@@ -63,5 +65,5 @@ jobs:
                         exit 1
                     fi
                     
-                    echo "MongoDB is ready and accessible via mongo:27017!"
+                    echo "MongoDB is ready and accessible via mongo:27017! Running tests now."
                     npm test
