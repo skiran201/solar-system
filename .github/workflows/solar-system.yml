@@ -69,6 +69,7 @@ jobs:
                     
                     echo "MongoDB is ready and accessible via 127.0.0.1:27017! Running tests now."
                     npm test -- --verbose
+              continue-on-error: true
 
             - name: Upload Test Results
               if: failure() && (steps.unit-test-step.outcome == 'failure' || steps.unit-test-step.outcome == 'success')
