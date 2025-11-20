@@ -25,6 +25,7 @@ jobs:
                     --health-cmd "mongo --eval 'db.runCommand({ping: 1})'"
                     --health-interval 10s
                     --health-timeout 5s
+                    --health-retries 5 # <-- ENSURE NO EXTRA LINE BREAKS AFTER THIS LINE
                 env:
                 # Required if you need authentication
                     MONGO_INITDB_ROOT_USERNAME: saikiran
