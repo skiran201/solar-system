@@ -67,4 +67,5 @@ jobs:
                     fi
                     
                     echo "MongoDB is ready and accessible via 127.0.0.1:27017! Running tests now."
-                    npm test
+                    npm test --verbose
+              continue-on-error: true

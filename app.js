@@ -12,10 +12,10 @@ app.use(express.static(path.join(__dirname, '/')));
 app.use(cors())
 
 try {
-    mongoose.connect(process.env.MONGO_URI, {
+    mongoose.connect('mongodb://127.0.0.1:27017/superData', {
         user: process.env.MONGO_USERNAME,
         pass: process.env.MONGO_PASSWORD,
-        authSource: 'admin',
+        authSource: "admin",
         useNewUrlParser: true,
         useUnifiedTopology: true
     }, function(err) {
