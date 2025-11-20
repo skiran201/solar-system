@@ -6,7 +6,7 @@ on:
             - main
             - feature/*
 env:
-    MONGO_URI: mongodb://127.0.0.1:27017/solar-system
+    MONGO_URI: mongodb://127.0.0.1:27017/superData
     MONGO_USERNAME: ${{ vars.MONGO_USERNAME }}
     MONGO_PASSWORD: ${{ vars.MONGO_PASSWORD }}
 jobs:
@@ -65,5 +65,5 @@ jobs:
                         exit 1
                     fi
                     
-                    echo "MongoDB is ready and accessible via mongo:27017! Running tests now."
+                    echo "MongoDB is ready and accessible via 127.0.0.1:27017! Running tests now."
                     npm test
