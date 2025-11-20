@@ -6,9 +6,7 @@ on:
             - main
             - feature/*
 env:
-    MONGO_URI: mongodb://saikiran:saikiran@127.0.0.1:27017/superData
-    MONGO_USERNAME: saikiran
-    MONGO_PASSWORD: saikiran
+    MONGO_URI: mongodb://127.0.0.1:27017/superData
 jobs:
     unit-testing:
         services:
@@ -26,10 +24,6 @@ jobs:
                     --health-interval=10s
                     --health-timeout=5s
                     --health-retries=5
-                env:
-                    # Required if you need authentication
-                    MONGO_INITDB_ROOT_USERNAME: saikiran
-                    MONGO_INITDB_ROOT_PASSWORD: saikiran
         runs-on: ubuntu-latest
         steps:
             - name: Checkout repository
