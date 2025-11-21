@@ -150,3 +150,4 @@ jobs:
                 echo "Container IP Address: $IP"
                 echo "Testing application endpoint..."
                 wget -qO- 127.0.0.1:3000/live | grep live
+                
