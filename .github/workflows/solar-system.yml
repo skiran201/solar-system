@@ -150,4 +150,10 @@ jobs:
                 echo "Container IP Address: $IP"
                 echo "Testing application endpoint..."
                 wget -qO- 127.0.0.1:3000/live | grep live
-                
+
+            - name: Push Docker image
+              uses: docker/build-push-action@v4
+              with:
+                context: .
+                push: true
+                tags: ${{ vars.DOCKER_USERNAME }}/solar-system:${{ github.sha }}
