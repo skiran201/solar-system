@@ -31,6 +31,16 @@ jobs:
                     MONGO_INITDB_DATABASE: superData
                     MONGO_INITDB_ROOT_USERNAME: saikiran
                     MONGO_INITDB_ROOT_PASSWORD: saikiran
+            mongo-db:
+                image: mongo:latest
+                ports:
+                    - 27018:27017
+        env:
+              # Required if you need authentication
+              MONGO_URI: mongodb://localhost:27018/superData
+              MONGO_USERNAME: non-prod-user
+              MONGO_PASSWORD: non-prod-password
+
         runs-on: ubuntu-latest
         steps:
             - name: Checkout repository
